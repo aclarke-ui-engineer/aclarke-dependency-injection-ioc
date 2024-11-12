@@ -1,7 +1,7 @@
 import { Users } from "./services/users";
 import { Logger } from "./services/logger";
 
-import type { User } from "./types";
+import type { User, ApiConfig } from "./types";
 import ioc from "./ioc";
 
 const renderUsers = async () => {
@@ -20,6 +20,9 @@ const renderUsers = async () => {
 };
 
 const app = () => {
+  const config: ApiConfig = (window as any).__CONFIG__;
+  delete (window as any).__CONFIG__;
+  ioc.register("apiConfig", config);
   renderUsers();
 };
 

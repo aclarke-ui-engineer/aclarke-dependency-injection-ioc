@@ -13,14 +13,10 @@ export type ServicesType = {
 };
 
 export const createIoCContainer = () => {
-  const config: ApiConfig = (window as any).__CONFIG__;
-  delete (window as any).__CONFIG__;
-
   const ioc = new IoCContainer<ServicesType>();
   ioc.registerClass("logger", Logger);
   ioc.registerClass("http", HTTP);
   ioc.registerClass("users", Users);
-  ioc.register("apiConfig", config);
   return ioc;
 };
 
